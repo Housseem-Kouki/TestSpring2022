@@ -5,23 +5,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.Date;
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Etudiant implements Serializable {
+public class RendezVous implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEtudiant ;
+    private long idRDV;
+    private Date dateRDV;
+    private String remarque;
 
-    private String prenomE ;
+    @ManyToOne
+    private Medecin medecin;
 
-    private String nomE ;
+    @ManyToOne
+    private Patient patient;
 }
